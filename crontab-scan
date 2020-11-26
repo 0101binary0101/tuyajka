@@ -1,0 +1,2 @@
+# m h  dom mon dow   command
+*/1 *  *   *   *  bash /local-tuya/scan_plugs.sh > /share-tuya/scan_plugs.log 2>&1
