@@ -1,7 +1,7 @@
 # tuyajka
 My first container for Tuya stuff for Home Assistant power reporting
 
-uild:
+Build:
  docker build -t tuyajka .
 
 Running:
