@@ -5,7 +5,7 @@ Build:
  docker build -t tuyajka .
 
 Running:
- Read and understand the run-tuyajka.sh and modify it...  it will expect you to modify it .. because HA will probably have access to a /share/ folder .. so create a /share/tuyapower/ folder and mod the script to mount onto that volume.
+ Read and understand the run-tuyajka.sh and modify it...  it will expect you to modify it .. because HA will probably have access to a /usr/share/hassio/share/tuyapower/ folder .. so create a /usr/share/hassio/share/tuyapower/ folder and mod the script to mount onto that volume.
 
  then run-tuyajka.sh to start the container
 
