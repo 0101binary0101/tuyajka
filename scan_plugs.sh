@@ -11,8 +11,8 @@ do
  PLUGIP=`echo $in|awk -F : '{print $3}'`
  PLUGVERS="3.3"
  echo "PLUGID=${PLUGID} PLUGKEY=${PLUGKEY} PLUGIP=${PLUGIP} PLUGVERS=${PLUGVERS} /local-tuya/plugjson-floats.py" 
- python3 /local-tuya/plugjson-floats.py "${PLUGID}" "${PLUGIP}" "${PLUGKEY}" "3.3"  | grep -v -- '-99' > /share-tuya/${plugname}.new
- mv /share-tuya/${plugname}.new /share-tuya/${plugname}
+ python3 /local-tuya/plugjson-floats.py "${PLUGID}" "${PLUGIP}" "${PLUGKEY}" "3.3"  | grep -v -- '-99' > /share-tuya/.${plugname}.new
+ mv /share-tuya/.${plugname}.new /share-tuya/${plugname}
  
  echo /share-tuya/${outjson}
 done < <( cat  /share-tuya/index.plug  | sed -r '/^(\s*#|$)/d;' )
