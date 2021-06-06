@@ -34,17 +34,19 @@ SETUP of your tuya devices
 
  To allow access to the /share/tuyapower/ directory your configuration.yaml should include the following lines:
 
+```
 homeassistant:
   customize: !include customize.yaml
   allowlist_external_dirs:
     - /share/tuyapower
-
+```
  To add sensors - You can manually execute the command.
    docker exec -ti tuyajka bash /local-tuya/generate-ha-senors.sh
 
  It should produce output that you can add to your configuration.yaml 'sensor:' attribute
 
 example with 'sensor:'
+```
  sensor:
    - platform: file
     name: plug_lounge_1_power
@@ -53,4 +55,4 @@ example with 'sensor:'
     file_path: /share/tuyapower/plug_lounge_1.json
     scan_interval: 60
 
-
+```
