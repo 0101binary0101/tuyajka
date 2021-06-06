@@ -1,6 +1,8 @@
 # tuyajka
 My first container for Tuya stuff for Home Assistant power reporting
 
+In order to use this you'll need to have access to your Tuya Account and have setup a Tuya API Key and Tuya API Secret - Once you've obtained this info then you should be able to use this container to report on the plugs you have registered with things like Smartlife and anything other registered with Tuya.
+
 Build:
  docker build -t tuyajka .
 
@@ -22,10 +24,16 @@ SETUP of your tuya devices
   docker exec -ti tuyajka bash /local-tuya/get-tuyawiz.sh
 ```
  You have to manually copy and paste as per the instructions...
+ e.g. vi /usr/share/hassio/share/tuyapower/tuya-wizard.out, the contents will look like this:
+ 
+```
+[ { name: 'Bike charger',
+    id: 'xxxxxxx',
+    key: 'xxxxxxxx' } ] 
 
+```
 
-
- Generate the index.plug file .... this will automatically go into your /share/tuyapower/ directory (or which ever volume you mount)
+ Then generate the index.plug file .... this will automatically go into your /share/tuyapower/ (/usr/share/hassio/share/tuyapower/) directory (or which ever volume you mount)
 ```
    docker exec -ti tuyajka bash /local-tuya/create-tuya-index.sh
 ```
@@ -57,4 +65,13 @@ example with 'sensor:'
     file_path: /share/tuyapower/plug_lounge_1.json
     scan_interval: 60
 
+```
+
+
+The files generated and updated in /usr/share/hassio/share/tuyapower/ directory will look like this:
+
+```
+jka@ha03-deb:~/tuyajka$ cat /usr/share/hassio/share/tuyapower/plug_Bike_charger.json
+{ "switch": "False", "power": 0.0, "current": 0.0, "voltage": 239.6 }
+jka@ha03-deb:~/tuyajka$
 ```
