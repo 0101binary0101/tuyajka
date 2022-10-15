@@ -1,17 +1,17 @@
-FROM ubuntu:20.04
+FROM alpine:latest
 MAINTAINER Kingsley <jka@twiddlingthumbs.com>
 
 
 ENV TZ=Europe/London
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-RUN apt-get update \
- && apt-get install -y cron \
- && apt-get install -y python3 \
- && apt-get install -y python3-pip \
- && apt-get install -y npm \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+# && apk add cron \
+RUN apk update \
+ && apk add bash \
+ && apk add build-base \
+ && apk add python3 \
+ && apk add py3-pip \
+ && apk add npm 
 
 RUN npm i @tuyapi/cli -g
 
@@ -37,5 +37,7 @@ COPY generate-ha-senors.sh /local-tuya/
 RUN chmod +x /local-tuya/generate-ha-senors.sh
 
 RUN crontab /local-tuya/crontab-scan
+# Clean up unnessary build images
+RUN apk del build-base
 
-ENTRYPOINT cron start && tail -f /var/log/cron.log
+ENTRYPOINT crond && tail -f /dev/null
